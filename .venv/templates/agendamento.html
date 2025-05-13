@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %} Agendar Serviço {% endblock%}
+
+{% block content %}
+
+<h2>Agendar Serviço</h2>
+<form>
+    <label for="cliente">Nome do Cliente</label>
+    <input type="text" id="cliente" required>
+
+    <label for="veiculo">Veículo</label>
+    <input type="text" id="veiculo" required>
+
+    <label for="servico">Serviço</label>
+    <select id="servico" required>
+        <option value="">Selecione</option>
+        <option value="simples">Lavagem Simples</option>
+        <option value="completa">Lavagem Completa</option>
+    </select>
+
+    <label for="data">Data</label>
+    <input type="date" id="data" required>
+
+    <label for="hora">Horário</label>
+    <input type="time" id="hora" required>
+
+    <button type="submit">Agendar</button>
+</form>
+
+{% endblock %}

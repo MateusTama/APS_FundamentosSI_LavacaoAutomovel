@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %} Histórico de Lavações {% endblock %}
+
+{% block header %}
+
+<header>
+    <div class="cliente-nome">Olá, João Silva</div>
+    <button onclick="{{ url_for('logout') }}">Sair</button>
+</header>
+
+{% endblock %}
+
+{% block content %}
+
+<main>
+    <h2>Histórico de Lavações</h2>
+    <div class="historico">
+        <div class="item">
+            <strong>Data:</strong> 01/05/2025
+            <strong>Serviço:</strong> Lavagem Simples
+            <strong>Status:</strong> Concluído
+            <strong>Valor:</strong> R$ 30,00
+        </div>
+        <div class="item">
+            <strong>Data:</strong> 20/04/2025
+            <strong>Serviço:</strong> Lavagem Completa
+            <strong>Status:</strong> Concluído
+            <strong>Valor:</strong> R$ 60,00
+        </div>
+        <div class="item">
+            <strong>Data:</strong> 10/04/2025
+            <strong>Serviço:</strong> Lavagem Simples
+            <strong>Status:</strong> Concluído
+            <strong>Valor:</strong> R$ 30,00
+        </div>
+        <!-- Mais registros podem ser adicionados aqui -->
+    </div>
+
+    <button class="novo-agendamento" onclick="">
+        Novo Agendamento
+    </button>
+</main>
+
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %} AutoCar - Início {% endblock %}
+
+{% block header %}
+
+<div class="header">
+    <a href="{{ url_for('home' ) }}" class="voltar">
+        <img src="/static/images/back-icon.svg" alt="Logo voltar" class="logo-voltar"> 
+        Voltar
+    </a>
+    <h2 class="titulo-pagina">AutoCar</h2>
+    <a href="{{ url_for('logout') }}" class="sair">Sair</a>
+</div>
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <div class="menu-central">
+        <a href="{{ url_for('home') }}" class="botao">
+            <img src="/static/images/home-icon.svg" class="icone" alt="Ícone Início">
+            Início
+        </a>
+        <a href="#" class="botao">
+            <img src="/static/images/calendar-icon.svg" class="icone" alt="Ícone Agendar">
+            Agendar serviço
+        </a>
+        <a href="{{ url_for('meus_veiculos' )}}" class="botao">
+            <img src="/static/images/car-icon.svg" class="icone" alt="Ícone Veículos">
+            Meus veículos
+        </a>
+        <a href="#" class="botao">
+            <img src="/static/images/document-icon.svg" class="icone" alt="Ícone Cadastro">
+            Cadastro serviço
+        </a>
+        <a href="{{ url_for('perfil') }}" class="botao">
+            <img src="/static/images/user-icon.svg" class="icone" alt="Ícone Perfil">
+            Perfil
+        </a>
+    </div>
+</div>
+
+{% endblock %}

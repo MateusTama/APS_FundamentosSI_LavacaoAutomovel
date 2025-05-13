@@ -1,0 +1,46 @@
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #003366;
+    padding: 12px 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1000;
+}
+
+.sair {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.voltar {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.logo-voltar {
+    width: 20px;
+    margin-right: 8px; /* Espaço entre o ícone e o texto */
+}
+
+.titulo-pagina {
+    font-size: 18px;
+    margin: 0;
+    flex: 1;
+    text-align: center;
+}
+
+.header a {
+    min-width: 60px;
+    text-align: center;
+}

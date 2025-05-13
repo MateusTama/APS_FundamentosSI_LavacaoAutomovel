@@ -1,0 +1,84 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f1f7fb;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.perfil-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 420px;
+}
+
+.perfil-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.perfil-header h1 {
+    font-size: 24px;
+    color: #003366;
+    margin: 0;
+}
+
+.botao-sair {
+    background-color: #ff4d4d;
+    color: white;
+    text-decoration: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.perfil-form .campo {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.perfil-form label {
+    font-weight: bold;
+    color: #00264d;
+    margin-bottom: 6px;
+}
+
+.perfil-form input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background-color: #f9f9f9;
+}
+
+.acoes {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.acoes a {
+    padding: 10px 16px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.botao-editar {
+    background-color: #007acc;
+    color: white;
+}
+
+.botao-senha {
+    background-color: #f5a623;
+    color: white;
+}

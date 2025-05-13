@@ -1,0 +1,17 @@
+@import "login.css";
+/* @import "cadastro_servico.css";
+@import "cadastro_cliente.css"; */
+@import "tela_inicial.css";
+@import "perfil.css";
+@import "header.css";
+@import "meus_veiculos.css";
+
+/* Importa a fonte Roboto do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
