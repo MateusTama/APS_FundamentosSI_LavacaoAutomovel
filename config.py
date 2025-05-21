@@ -5,7 +5,7 @@ DATABASE = {}
 FLASK = {} 
 
 def configuracao_ambiente():
-    if not (load_dotenv(os.path.join(".venv", "config.env"))):
+    if not (load_dotenv("config.env")):
         print("Não foi possível carregar as configurações de ambiente")
         return    
     

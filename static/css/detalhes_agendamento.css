@@ -1,0 +1,52 @@
+.container-agendamento-detalhes {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+}
+
+.card-detalhes {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.card-detalhes p {
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+.botao-status {
+    margin-top: 1.5rem;
+    padding: 0.8rem 1.2rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.botao-status.iniciar {
+    background-color: #007bff;
+    color: white;
+}
+
+.botao-status.finalizar {
+    background-color: #28a745;
+    color: white;
+}
+
+.botao-cancelar {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 4px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.botao-cancelar:hover {
+    background-color: #a71d2a;
+}
+

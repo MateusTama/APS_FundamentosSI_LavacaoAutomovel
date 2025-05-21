@@ -1,0 +1,30 @@
+.container-relatorio {
+    padding: 2rem;
+    background: #fff;
+    border-radius: 8px;
+    max-width: 1000px;
+    margin: 2rem auto;
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.tabela-relatorio {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.tabela-relatorio th,
+.tabela-relatorio td {
+    border: 1px solid #ddd;
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.tabela-relatorio th {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+.tabela-relatorio tr:nth-child(even) {
+    background-color: #f9f9f9;
+}

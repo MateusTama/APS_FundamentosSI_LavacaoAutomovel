@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %} Agendar Serviço {% endblock%}
+
+{% block content %}
+
+<h2>Agendar Serviço</h2>
+<form method="post" action="{{ url_for('agendar_servico') }}">
+
+    <label for="veiculo">Tipo do veículo</label>
+    <select id="veiculo_tipo" name="veiculo_tipo" required>
+        <option value="">Selecione</option>
+        {% for veiculo_tipo in veiculo_tipos %}
+            <option value="{{ veiculo_tipo.id }}">{{ veiculo_tipo.nome }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="servico">Serviço</label>
+    <select id="servico" name="servico" required>
+        <option value="">Selecione</option>
+        {% for servico in servicos %}
+            <option value="{{ servico.id }}">{{ servico.nome }}</option>
+        {% endfor %}
+    </select>
+
+    <label for="data">Data</label>
+    <input type="date" id="data" name="data" required>
+
+    <label for="hora">Horário</label>
+    <input type="time" id="hora" name="hora" required>
+
+    <button type="submit">Agendar</button>
+</form>
+
+{% endblock %}
