@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %} Dashboard {% endblock %}
+
+{% block header %}
+<div class="header">
+    <a href="{{ url_for('home') }}" class="voltar">
+        <img src="/static/images/back-icon.svg" alt="Voltar" class="logo-voltar">
+        Voltar
+    </a>
+    <h2 class="titulo-pagina">Dashboard</h2>
+    <a href="{{ url_for('logout') }}" class="sair">Sair</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<h2>Relatório de Agendamentos por Veículo</h2>
+<div>
+    {{ grafico_html|safe }}
+</div>
+{% endblock %}

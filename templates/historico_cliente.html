@@ -2,13 +2,22 @@
 
 {% block title %} Histórico de Lavações {% endblock %}
 
+{% block head %} 
+
+{{ super() }}
+<link rel="stylesheet" href="/static/css/historico_cliente.css">
+
+{% endblock %}
+
 {% block header %}
-
-<header>
-    <div class="cliente-nome">Olá, João Silva</div>
-    <button onclick="{{ url_for('logout') }}">Sair</button>
-</header>
-
+<div class="header">
+    <a href="{{ url_for('home') }}" class="voltar">
+        <img src="/static/images/back-icon.svg" alt="Voltar" class="logo-voltar">
+        Voltar
+    </a>
+    <h2 class="titulo-pagina">Histórico de Lavações</h2>
+    <a href="{{ url_for('logout') }}" class="sair">Sair</a>
+</div>
 {% endblock %}
 
 {% block content %}

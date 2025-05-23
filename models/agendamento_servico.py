@@ -1,4 +1,5 @@
 from db import get_connection
+import pandas as pd
 
 class AgendamentoServico:
     def __init__(self, id=None, veiculo_tipo_id=None, veiculo_tipo_nome=None, cliente_id=None, cliente_nome=None, servico_id=None, servico_nome=None, servico_preco=None, servico_duracao_estimada=None, colaborador_id=None, colaborador_nome=None, data_hora_cadastro=None, data_hora_agendamento=None, data_hora_inicio=None, data_hora_termino=None, status_id=None, status_descricao=None):
@@ -42,44 +43,63 @@ class AgendamentoServico:
         params = []
 
         query = """
-            SELECT agendamento_id, agendamento_servico.veiculo_tipo_id, veiculo_tipo.veiculo_tipo_nome, agendamento_servico.cliente_id, cliente.usuario_nome, agendamento_servico.servico_id, servico.servico_nome, servico.servico_preco, servico.servico_duracao_estimada, colaborador_id, colaborador.usuario_nome, datahora_cadastro, datahora_agendamento, datahora_inicio, datahora_termino, status_id, agendamento_servico_status.agendamento_servico_status_descricao
+            SELECT agendamento_id, agendamento_servico.veiculo_tipo_id, veiculo_tipo.veiculo_tipo_nome,
+                    agendamento_servico.cliente_id, cliente.usuario_nome, agendamento_servico.servico_id,
+                    servico.servico_nome, servico.servico_preco, servico.servico_duracao_estimada,
+                    colaborador_id, colaborador.usuario_nome, datahora_cadastro, datahora_agendamento,
+                    datahora_inicio, datahora_termino, status_id, agendamento_servico_status.agendamento_servico_status_descricao
             FROM agendamento_servico
-            INNER JOIN veiculo_tipo
-            ON veiculo_tipo.veiculo_tipo_id = agendamento_servico.veiculo_tipo_id
-            INNER JOIN usuario AS cliente
-            ON cliente.usuario_id = agendamento_servico.cliente_id
-            INNER JOIN servico
-            ON servico.servico_id = agendamento_servico.servico_id
-            INNER JOIN agendamento_servico_status
-            ON agendamento_servico_status.agendamento_servico_status_id = agendamento_servico.status_id
-            LEFT JOIN usuario AS colaborador
-			ON colaborador.usuario_id = agendamento_servico.colaborador_id
+            INNER JOIN veiculo_tipo ON veiculo_tipo.veiculo_tipo_id = agendamento_servico.veiculo_tipo_id
+            INNER JOIN usuario AS cliente ON cliente.usuario_id = agendamento_servico.cliente_id
+            INNER JOIN servico ON servico.servico_id = agendamento_servico.servico_id
+            INNER JOIN agendamento_servico_status ON agendamento_servico_status.agendamento_servico_status_id = agendamento_servico.status_id
+            LEFT JOIN usuario AS colaborador ON colaborador.usuario_id = agendamento_servico.colaborador_id
         """
 
+        conditions = []
+
         if data_filtro:
-            query += " AND DATE(datahora_agendamento) = %s"
+            conditions.append("DATE(datahora_agendamento) = %s")
             params.append(data_filtro)
 
         if status_id:
-            query += " AND status_id = %s"
+            conditions.append("status_id = %s")
             params.append(status_id)
+
+        if conditions:
+            query += " WHERE " + " AND ".join(conditions)
 
         cursor.execute(query, params)
 
         resultados = cursor.fetchall()
         servicos_agendados = []
         for registro in resultados:
-            servico_agendado = AgendamentoServico(id=registro[0], veiculo_tipo_id=registro[1], veiculo_tipo_nome=registro[2], cliente_id=registro[3], cliente_nome=registro[4], servico_id=registro[5], servico_nome=registro[6], servico_preco=registro[7], servico_duracao_estimada=registro[8],colaborador_id=registro[9], colaborador_nome=registro[10], data_hora_cadastro=registro[11], data_hora_agendamento=registro[12], data_hora_inicio=registro[13], data_hora_termino=registro[14], status_id=registro[15], status_descricao=registro[16])
+            servico_agendado = AgendamentoServico(
+                id=registro[0],
+                veiculo_tipo_id=registro[1],
+                veiculo_tipo_nome=registro[2],
+                cliente_id=registro[3],
+                cliente_nome=registro[4],
+                servico_id=registro[5],
+                servico_nome=registro[6],
+                servico_preco=registro[7],
+                servico_duracao_estimada=registro[8],
+                colaborador_id=registro[9],
+                colaborador_nome=registro[10],
+                data_hora_cadastro=registro[11],
+                data_hora_agendamento=registro[12],
+                data_hora_inicio=registro[13],
+                data_hora_termino=registro[14],
+                status_id=registro[15],
+                status_descricao=registro[16]
+            )
             servicos_agendados.append(servico_agendado)
 
         cursor.close()
         conn.close()
 
-        if servicos_agendados:
-            return servicos_agendados
+        return servicos_agendados if servicos_agendados else None
 
-        return None
-    
     def buscar(id):
         conn = get_connection()
         cursor = conn.cursor()
@@ -140,15 +160,16 @@ class AgendamentoServico:
             ON servico.servico_id = agendamento_servico.servico_id
             INNER JOIN agendamento_servico_status
             ON agendamento_servico_status.agendamento_servico_status_id = agendamento_servico.status_id
-            WHERE cliente_id = %s
-            ORDER BY datahora_agendamento      
+            WHERE cliente_id = %s     
         """
 
         params.append(id)
 
         if data_filtro:
-            query += "AND DATE(datahora_agendamento) = %s"
+            query += " AND DATE(datahora_agendamento) = %s"
             params.append(data_filtro)
+
+        query += " ORDER BY datahora_agendamento "
 
         cursor.execute(query, params)
 
@@ -241,3 +262,19 @@ class AgendamentoServico:
         conn.commit()
         cursor.close()
         conn.close()
+
+    def total_servicos_por_tipo_veiculo():
+        conn = get_connection()
+
+        query = """
+            SELECT veiculo_tipo.veiculo_tipo_nome, COUNT(*) as quantidade
+            FROM agendamento_servico
+            INNER JOIN veiculo_tipo
+            ON veiculo_tipo.veiculo_tipo_id = agendamento_servico.veiculo_tipo_id
+            GROUP BY veiculo_tipo.veiculo_tipo_nome;
+        """
+
+        df = pd.read_sql_query(query, conn)
+        conn.close()
+
+        return df

@@ -2,6 +2,13 @@
 
 {% block title %}Serviços Agendados{% endblock %}
 
+{% block head %} 
+
+{{ super() }}
+<link rel="stylesheet" href="/static/css/servicos_agendados.css">
+
+{% endblock %}
+
 {% block header %}
 <div class="header">
     <a href="{{ url_for('home') }}" class="voltar">

@@ -7,6 +7,8 @@ from models.veiculo_tipo import VeiculoTipo
 from models.agendamento_servico import AgendamentoServico
 from config import FLASK
 from datetime import datetime, date
+import plotly.graph_objs as go
+import plotly.offline as pyo
 
 app = Flask(__name__)
 
@@ -172,6 +174,24 @@ def relatorio():
     servicos_realizados = AgendamentoServico.buscar_todos_servicos_agendados(data_hoje, 2)
     
     return render_template("relatorio.html", data_hoje=data_hoje, servicos_realizados=servicos_realizados)
+
+@app.route("/dashboard")
+def dashboard():
+    if (not "id" in session):
+        return redirect(url_for("login"))
+    
+    if (not session["admin"] and not session["funcionario"]):
+        return redirect(url_for("home"))
+
+    df = AgendamentoServico.total_servicos_por_tipo_veiculo()
+
+    fig = go.Figure(data=[
+        go.Bar(x=df["veiculo_tipo_nome"], y=df["quantidade"], marker_color='steelblue')
+    ])
+    fig.update_layout(title="Agendamentos por Tipo de Veículo")
+
+    grafico_html = pyo.plot(fig, output_type="div")
+    return render_template("dashboard_veiculos.html", grafico_html=grafico_html)
 
 @app.route("/logout")
 def logout():

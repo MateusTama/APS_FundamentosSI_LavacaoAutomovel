@@ -2,6 +2,13 @@
 
 {% block title %}Relatório Diário{% endblock %}
 
+{% block head %} 
+
+{{ super() }}
+<link rel="stylesheet" href="/static/css/relatorio.css">
+
+{% endblock %}
+
 {% block header %}
 <div class="header">
     <a href="{{ url_for('home') }}" class="voltar">

@@ -2,10 +2,21 @@
 
 {% block title %} Agendar Serviço {% endblock%}
 
+{% block header %}
+<div class="header">
+    <a href="{{ url_for('home') }}" class="voltar">
+        <img src="/static/images/back-icon.svg" alt="Voltar" class="logo-voltar">
+        Voltar
+    </a>
+    <h2 class="titulo-pagina">Detalhes do Agendamento</h2>
+    <a href="{{ url_for('logout') }}" class="sair">Sair</a>
+</div>
+{% endblock %}
+
 {% block content %}
 
 <h2>Agendar Serviço</h2>
-<form method="post" action="{{ url_for('agendar_servico') }}">
+<form method="post" action="{{ url_for('agendar_servico') }}" class="padding"> 
 
     <label for="veiculo">Tipo do veículo</label>
     <select id="veiculo_tipo" name="veiculo_tipo" required>

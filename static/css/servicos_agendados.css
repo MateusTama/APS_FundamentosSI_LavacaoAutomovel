@@ -38,6 +38,7 @@
 
 .form-filtro {
     display: flex;
+    padding: 1.5rem;
     align-items: center;
     gap: 0.5rem;
     margin-bottom: 1rem;
@@ -52,6 +53,7 @@
 }
 
 .form-filtro button {
+    margin-top: 0;
     background-color: #007bff;
     color: white;
     font-weight: bold;

@@ -2,6 +2,13 @@
 
 {% block title %} AutoCar - Início {% endblock %}
 
+{% block head %} 
+
+{{ super() }}
+<link rel="stylesheet" href="/static/css/tela_inicial.css">
+
+{% endblock %}
+
 {% block header %}
 
 <div class="header">
@@ -30,10 +37,10 @@
                 Agendar serviço
             </a>
         {% endif %}
-        <a href="{{ url_for('meus_veiculos') }}" class="botao">
+        <!-- <a href="{{ url_for('meus_veiculos') }}" class="botao">
             <img src="/static/images/car-icon.svg" class="icone" alt="Ícone Veículos">
             Meus veículos
-        </a>
+        </a> -->
         {% if session["funcionario"] or session["admin"] %}
             <a href="{{ url_for('cadastrar_servico') }}" class="botao">
                 <img src="/static/images/document-icon.svg" class="icone" alt="Ícone Cadastro">
@@ -42,6 +49,10 @@
             <a href="{{ url_for('relatorio') }}" class="botao">
                 <img src="/static/images/report-icon.svg" class="icone" alt="Ícone Relatório">
                 Relatório do Dia
+            </a>
+            <a href="{{ url_for('dashboard') }}" class="botao">
+                <img src="/static/images/graph-icon.svg" class="icone" alt="Ícone de Gráfico">
+                Dashboard
             </a>
         {% endif %}
         <a href="{{ url_for('servicos_agendados') }}" class="botao">
