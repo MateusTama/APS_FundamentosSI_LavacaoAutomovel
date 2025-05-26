@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Lilita+One&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  font-family: "Lilita One", Arial, sans-serif;
+  background-color: #0a0a0a;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  width: 100%;
+  height: 110px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  border-bottom: 0.5px solid gray;
+
+  .logo {
+    width: 240px;
+    height: 90px;
+    display: flex;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    ul {
+      list-style: none;
+      display: flex;
+
+      li {
+        a {
+          text-decoration: none;
+          color: #ffffff;
+          font-size: 30px;
+
+          &:hover {
+            color: #ff8205;
+            transform: scale(1.1);
+            transition: all 0.3s ease-in-out;
+          }
+        }
+      }
+    }
+  }
+}

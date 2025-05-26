@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/servicos.css') }}">
+  {% block title %} Serviços - Lion {% endblock %}
+{% endblock %}
+
+{% block header %}
+  <header>
+    <a class="logo" href="{{ url_for('home') }}">
+      <img src="{{ url_for('static', filename='images/Logo Lion.svg') }}" alt="logo-site" class="logo-lion" />
+    </a>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('contato') }}">Contato</a></li>
+        <li class="agendar"><a href="{{ url_for('agendamento') }}">AGENDAR</a></li>
+      </ul>
+    </nav>
+  </header>
+{% endblock %}
+
+{% block content %}
+  <main>
+    <div class="title-services">
+      <h1>Serviços</h1>
+    </div>
+
+    {% if servicos %}
+    <section class="services">
+      <div class="service">
+        <h2 class="title">{{ servico_nome }}</h2>
+        <h2 class="time">{{ servico_duracao_estimada }}</h2>
+        <p class="price">{{ servico_preco }}</p>
+      </div>
+    </section>
+
+    <section class="btn-agend">
+      <div class="btn">
+        <a class="btn" href="{{ url_for('agendamento') }}">AGENDAR</a>
+      </div>
+    </section>
+    {% else %}
+      <p>Nenhum serviço cadastrado</p>
+    {% endif %}
+  </main>
+{% endblock %}

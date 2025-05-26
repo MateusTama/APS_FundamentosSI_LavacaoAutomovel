@@ -36,7 +36,6 @@ def create_tables():
             usuario_tipo_id SMALLSERIAL NOT NULL,
             usuario_nome VARCHAR(100) NOT NULL,
             usuario_email VARCHAR(100) NOT NULL UNIQUE,
-            usuario_telefone VARCHAR(14) NOT NULL UNIQUE,
             usuario_senha TEXT NOT NULL,
             usuario_datahoracadastro TIMESTAMP NOT NULL DEFAULT NOW(),
             FOREIGN KEY (usuario_tipo_id) REFERENCES usuario_tipo(usuario_tipo_id)

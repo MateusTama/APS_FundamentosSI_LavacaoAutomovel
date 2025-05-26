@@ -57,11 +57,27 @@ body {
         }
     }
 
-    .recover-password {
-        margin-top: 30px;
-        font-size: 20px;
-        color: #ffffff;
-        text-decoration: none;
+    .checkbox-container {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-top: 20px;
+
+        input {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #ffffff;
+            border-radius: 6px;
+            background-color: transparent;
+            cursor: pointer;
+            position: relative;
+        }
+    }
+
+    .solicitation {
+        margin-top: 20px;
     }
 
     .entrar {

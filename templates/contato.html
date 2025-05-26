@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/contatos.css') }}">
+  <title>Contato - Lion</title>
+{% endblock %}
+
+{% block header %}
+  <header>
+    <a class="logo" href="{{ url_for('home') }}">
+      <img src="{{ url_for('static', filename='images/Logo Lion.svg') }}" alt="logo-site" class="logo-lion" />
+    </a>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('servicos') }}">Serviços</a></li>
+        <li class="agendar"><a href="{{ url_for('agendamento') }}">AGENDAR</a></li>
+      </ul>
+    </nav>
+  </header>
+{% endblock %}
+
+{% block content %}
+  <main>
+    <h1>Entre em contato</h1>
+
+    <div class="social-contacts">
+      <div class="social-media">
+        <a href="#"><img src="{{ url_for('static', filename='images/WhatsApp image.svg') }}" alt="WhatsApp"></a>
+      </div>
+
+      <div class="social-media">
+        <a href="https://www.instagram.com/lionestudioautomotivo?igsh=MThuZGE3bGZmbGswZQ==">
+          <img src="{{ url_for('static', filename='images/Instagram image.svg') }}" alt="Instagram">
+        </a>
+      </div>
+
+      <div class="social-media">
+        <a href="#"><img src="{{ url_for('static', filename='images/TikTok image.svg') }}" alt="TikTok"></a>
+      </div>
+    </div>
+
+    <section class="btn-address">
+      <div class="address-img">
+        <img src="{{ url_for('static', filename='images/Location image.svg') }}" alt="location-image">
+        <address>R. João Batista Torrezani, 175 - Steffen, Brusque - SC, 88355-210</address>
+      </div>
+
+      <div class="btn">
+        <a class="btn" href="https://www.google.com.br/maps/place/R.+Jo%C3%A3o+Batista+Torrezani,+175+-+Steffen,+Brusque+-+SC,+88355-210" target="_blank">
+          COMO CHEGAR
+        </a>
+      </div>
+    </section>
+  </main>
+{% endblock %}

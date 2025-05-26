@@ -1,0 +1,152 @@
+@import url("https://fonts.googleapis.com/css2?family=Lilita+One&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  font-family: "Lilita One", Arial, sans-serif;
+  background-color: #0a0a0a;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 300px;
+  width: 100%;
+  height: 110px;
+  border-bottom: 0.5px solid gray;
+
+  img {
+    width: 240px;
+    height: 90px;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    gap: 30px;
+
+    li {
+      a {
+        color: #ffffff;
+        text-decoration: none;
+        font-size: 20px;
+
+        &:hover {
+          color: #ff8205;
+          transform: scale(1.1);
+          transition: all 0.3s ease-in-out;
+        }
+      }
+    }
+
+    .agendar {
+      width: 150px;
+      height: 45px;
+      background-color: #ff8205;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 20px;
+
+      &:hover {
+        background-color: #ffffff;
+        transform: scale(1.1);
+      }
+    }
+  }
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.title {
+    text-align: center;
+    margin-top: 40px;
+
+    h1 {
+        font-size: 64px;
+    }
+}
+
+.linha-horizontal {
+    margin-top: 30px;
+    width: 650px;
+    border-bottom: 3px solid gray;
+}
+
+.avaliacoes {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 100px;
+
+  .avaliacao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 430px;
+    height: 300px;
+    background-color: #1f1f1f;
+    border-radius: 30px;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(255, 140, 0, 0.2);
+    position: relative;
+
+    .avatar-wrapper {
+        position: absolute;
+        top: -50px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 50%;
+        background-color: #d9d9d9;
+        width: 100px;
+        height: 100px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .avatar {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+    }
+
+    .estrelas {
+        margin-top: 50px;
+
+        .stars {
+            width: 180px;
+            height: 71px;
+        }
+    }
+
+    h3 {
+        font-size: 26px;
+        margin-bottom: 50px;
+    }
+
+    p {
+        font-size: 20px;
+    }
+    
+  }
+}

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, session, request, redirect, url_for
+from flask import Flask, render_template, session, request, redirect, url_for, flash
 from models.usuario import Usuario
 from models.servico import Servico
 from models.servico_categoria import ServicoCategoria
@@ -17,9 +17,6 @@ app.secret_key = FLASK["secret_key"]
 
 @app.route("/")
 def home():
-    if (not "id" in session):
-        return redirect(url_for("login"))
-    
     return render_template("index.html")
 
 @app.route("/login", methods=["GET","POST"])
@@ -35,13 +32,18 @@ def login():
 
         usuario = Usuario.buscar_por_email(email)
         # Checa se a senha corresponde ao hash armazenado no banco de dados
-        if (usuario) and (usuario.validar_senha(senha)):
-            session["id"] = usuario.id
-            isAdmin = UsuarioTipo.is_admin(usuario.tipo_id)
-            isFuncionario = UsuarioTipo.is_funcionario(usuario.tipo_id)
-            session["admin"] = isAdmin
-            session["funcionario"] = isFuncionario
-            return redirect(url_for("home"))
+        if (usuario):
+            if (usuario.validar_senha(senha)):
+                session["id"] = usuario.id
+                isAdmin = UsuarioTipo.is_admin(usuario.tipo_id)
+                isFuncionario = UsuarioTipo.is_funcionario(usuario.tipo_id)
+                session["admin"] = isAdmin
+                session["funcionario"] = isFuncionario
+                return redirect(url_for("home"))
+            else:
+                flash("A senha está incorreta", "error")
+        else:
+            flash("Usuário não cadastrado", "error")
 
         # Senhas não correspondem
         # return redirect(url_for("home"))
@@ -57,10 +59,13 @@ def cadastrar_cliente():
     if (request.method == "POST"):
         usuario_nome = request.form["nome"]
         usuario_email = request.form["email"]
-        usuario_telefone = request.form["telefone"]
         usuario_senha = request.form["senha"]
+        usuario_colaborador = request.form["colaborador"]
+        tipo_id = 1
+        if usuario_colaborador:
+            tipo_id = 2
 
-        usuario = Usuario(tipo_id=1, nome=usuario_nome, email=usuario_email, telefone=usuario_telefone, senha=usuario_senha)
+        usuario = Usuario(tipo_id=tipo_id, nome=usuario_nome, email=usuario_email, senha=usuario_senha)
         usuario.inserir()
         return redirect(url_for("login"))
 
@@ -198,6 +203,22 @@ def logout():
     # Remove a sessão do usuário e redireciona para o login
     session.clear()
     return redirect(url_for("login"))
+
+@app.route("/contato")
+def contato():
+    return render_template("contato.html")
+
+@app.route("/avaliacoes")
+def avaliacoes():
+    return render_template("avaliacoes.html")
+
+@app.route("/servicos")
+def servicos():
+    return render_template("servicos.html")
+
+@app.route("/agendamento")
+def agendamento():
+    return render_template("agendamento.html")
 
 if (__name__ == "__main__"):
     app.run(debug=True)

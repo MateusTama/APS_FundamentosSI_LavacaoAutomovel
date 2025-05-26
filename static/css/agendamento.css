@@ -1,51 +1,204 @@
+@import url("https://fonts.googleapis.com/css2?family=Lilita+One&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f4f6f8;
-    padding: 2rem;
+  width: 100%;
+  height: 100vh;
+  font-family: "Lilita One", Arial, sans-serif;
+  background-color: #0a0a0a;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
 }
 
-h2 {
-    color: #007bff;
-    margin-bottom: 1rem;
+header {
+  width: 100%;
+  height: 110px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 50px;
+  border-bottom: 0.5px solid gray;
+
+  .logo {
+    width: 240px;
+    height: 90px;
+    display: flex;
+  }
+
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    ul {
+      list-style: none;
+      display: flex;
+
+      li {
+        a {
+          text-decoration: none;
+          color: #ffffff;
+          font-size: 30px;
+
+          &:hover {
+            color: #ff8205;
+            transform: scale(1.1);
+            transition: all 0.3s ease-in-out;
+          }
+        }
+      }
+    }
+  }
 }
 
-form {
-    background: white;
-    padding: 1.5rem;
-    border-radius: 8px;
-    max-width: 600px;
-    margin: auto;
-    box-shadow: 0 0 6px rgba(0, 0, 0, 0.05);
+.title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 100px;
+  margin-bottom: 100px;
+  font-size: 50px;
 }
 
-label {
-    display: block;
-    font-weight: 500;
-    margin-top: 1rem;
+main {
+  display: flex;
+  justify-content: space-around;
+
+  .dados {
+    width: 669px;
+    height: 482px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: -100px;
+
+    form {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      gap: 55px;
+      font-size: 30px;
+
+      .dados-cliente {
+        input {
+          width: 450px;
+          height: 60px;
+          border-radius: 30px;
+          background-color: #6e6e6e;
+          color: #0a0a0a;
+          font-size: 1.3rem;
+          font-family: "Lilita One", Arial, sans-serif;
+          padding: 0 20px;
+          border: 0.5px solid #ffffff;
+          margin-top: 12px;
+        }
+      }
+    }
+  }
+
+  .services-data {
+    form {
+      h2 {
+        margin-bottom: 10px;
+        margin-top: 30px;
+      }
+
+      select {
+        width: 270px;
+        height: 40px;
+        border-radius: 30px;
+        background-color: #6e6e6e;
+        color: #ffffff;
+        font-size: 1rem;
+        padding: 0 20px;
+        border: 0.5px solid #ffffff;
+
+        option {
+          color: #ffffff;
+          font-family: "Lilita One", Arial, sans-serif;
+        }
+      }
+    }
+
+    .container {
+      h2 {
+        margin-top: 30px;
+      }
+
+      .calendar {
+        background: #1e1e1e;
+        border-radius: 8px;
+        padding: 0.5rem;
+      }
+      .weekdays,
+      .days {
+        display: grid;
+        grid-template-columns: repeat(7, 1fr);
+        text-align: center;
+      }
+      .weekdays div {
+        padding: 0.5rem 0;
+        font-weight: bold;
+      }
+      .days div {
+        margin: 0.2rem;
+        padding: 0.5rem 0;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+      .days div:hover {
+        background: #333;
+      }
+      .days .today {
+        background: #333;
+      }
+      .days .selected {
+        background: #ff8205;
+      }
+      .timeslots {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 1rem;
+      }
+      .timeslots button {
+        flex: 1 1 30%;
+        margin: 0.3rem;
+        padding: 0.6rem 0;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        background: #ff8205;
+        color: #121212;
+        font-weight: bold;
+      }
+      .timeslots button.selected {
+        background: #ffa733;
+      }
+      .timeslots button:disabled {
+        background: #555;
+        cursor: not-allowed;
+      }
+    }
+  }
 }
 
-input,
-select {
-    width: 100%;
-    padding: 0.6rem;
-    margin-top: 0.3rem;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
-
-button {
-    margin-top: 1.5rem;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 0.8rem;
-    border-radius: 4px;
-    width: 100%;
-    font-size: 1rem;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-button:hover {
-    background-color: #0056b3;
+.confirm-btn {
+  width: 300px;
+  height: 60px;
+  border-radius: 20px;
+  background-color: #ff8205;
+  grid-column: 1 / -1; /* da coluna 1 até a última */
+  justify-self: center; /* centraliza o botão horizontalmente */
+  margin-top: 2rem;
+  margin-bottom: 100px;
+  color: #ffffff;
+  font-family: 'Lilita One', Arial, sans-serif;
+  font-size: 1.2rem;
+  cursor: pointer;
 }

@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {{ super() }}
+  <title>Agendamento Lavação</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/agendamento.css') }}">
+{% endblock %}
+
+{% block header %}
+  <header>
+    <a class="logo" href="{{ url_for('home') }}">
+      <img src="{{ url_for('static', filename='images/Logo Lion.svg') }}" alt="logo-site" class="logo-lion"/>
+    </a>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('contato') }}">Contatos</a></li>
+      </ul>
+    </nav>
+  </header>
+{% endblock %}
+
+{% block content %}
+  <div class="title">
+    <h1>Agendamento</h1>
+  </div>
+
+  <main>
+    <section class="dados">
+      <form>
+        <div class="dados-cliente">
+          <label for="nome">Nome:</label><br>
+          <input type="text" id="nome" />
+        </div>
+
+        <div class="dados-cliente">
+          <label for="telefone">Telefone:</label><br>
+          <input type="tel" id="telefone" placeholder="(xx) xxxxx-xxxx" required />
+        </div>
+
+        <div class="dados-cliente">
+          <label for="car">Modelo do carro:</label><br>
+          <input type="text" id="car" />
+        </div>
+      </form>
+    </section>
+
+    <section class="services-data">
+      <form>
+        <h2>Escolha o serviço</h2>
+        <select id="service">
+          <option value="" disabled selected>Selecione:</option>
+          <option>Lavagem Simples</option>
+          <option>Lavagem Completa</option>
+          <option>Hidratação</option>
+        </select>
+      </form>
+
+      <div class="container">
+        <h2>Escolha o dia e horário</h2>
+        <div class="calendar">
+          <div class="weekdays">
+            <div>D</div><div>S</div><div>T</div>
+            <div>Q</div><div>Q</div><div>S</div><div>S</div>
+          </div>
+          <div class="days" id="days"></div>
+        </div>
+
+        <div class="timeslots" id="timeslots">
+          <!-- horários serão inseridos via JS -->
+        </div>
+
+        <a href="">
+          <button class="confirm-btn">CONFIRMAR</button>
+        </a>
+      </div>
+      <script src="{{ url_for('static', filename='javascript/agendamento.js') }}"></script>
+    </section>
+  </main>
+{% endblock %}
+

@@ -2,12 +2,11 @@ from db import get_connection
 from werkzeug.security import generate_password_hash, check_password_hash
 
 class Usuario:
-    def __init__(self, id=None, tipo_id=None,nome=None, email=None, telefone=None, senha=None, data_hora_cadastro=None):
+    def __init__(self, id=None, tipo_id=None,nome=None, email=None, senha=None, data_hora_cadastro=None):
         self.id = id
         self.tipo_id = tipo_id
         self.nome = nome
         self.email = email
-        self.telefone = telefone
         self.senha = senha
         self.data_hora_cadastro = data_hora_cadastro
 
@@ -19,10 +18,10 @@ class Usuario:
 
         cursor.execute("""
             INSERT INTO usuario
-            (usuario_tipo_id, usuario_nome, usuario_email, usuario_telefone, usuario_senha)
+            (usuario_tipo_id, usuario_nome, usuario_email, usuario_senha)
             VALUES
-            (%s, %s, %s, %s, %s)
-        """, (self.tipo_id, self.nome, self.email, self.telefone, senha_hash))
+            (%s, %s, %s, %s)
+        """, (self.tipo_id, self.nome, self.email, senha_hash))
 
         conn.commit()
         cursor.close()
@@ -33,7 +32,7 @@ class Usuario:
         cursor = conn.cursor()
 
         cursor.execute("""
-            SELECT usuario_id, usuario_tipo_id, usuario_nome, usuario_email, usuario_telefone, usuario_senha, usuario_datahoracadastro 
+            SELECT usuario_id, usuario_tipo_id, usuario_nome, usuario_email, usuario_senha, usuario_datahoracadastro 
             FROM usuario
             WHERE usuario_id = %s
         """, (id,))
@@ -48,10 +47,9 @@ class Usuario:
             tipo_id = registro_usuario[1]
             nome = registro_usuario[2]
             email = registro_usuario[3] 
-            telefone = registro_usuario[4]
-            senha = registro_usuario[5]
-            data_hora_cadastro = registro_usuario[6]
-            return Usuario(id, tipo_id, nome, email, telefone, senha, data_hora_cadastro)
+            senha = registro_usuario[4]
+            data_hora_cadastro = registro_usuario[5]
+            return Usuario(id, tipo_id, nome, email, senha, data_hora_cadastro)
         
         return None
 
@@ -60,7 +58,7 @@ class Usuario:
         cursor = conn.cursor()
 
         cursor.execute("""
-            SELECT usuario_id, usuario_tipo_id, usuario_nome, usuario_email, usuario_telefone, usuario_senha, usuario_datahoracadastro 
+            SELECT usuario_id, usuario_tipo_id, usuario_nome, usuario_email, usuario_senha, usuario_datahoracadastro 
             FROM usuario
             WHERE usuario_email = %s
         """, (email,))
@@ -75,10 +73,9 @@ class Usuario:
             tipo_id = registro_usuario[1]
             nome = registro_usuario[2]
             # email = registro_usuario[3] igual ao parâmetro email
-            telefone = registro_usuario[4]
-            senha = registro_usuario[5]
-            data_hora_cadastro = registro_usuario[6]
-            return Usuario(id, tipo_id, nome, email, telefone, senha, data_hora_cadastro)
+            senha = registro_usuario[4]
+            data_hora_cadastro = registro_usuario[5]
+            return Usuario(id, tipo_id, nome, email, senha, data_hora_cadastro)
         
         return None
     

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/avaliacoes.css') }}">
+{% endblock %}
+
+{% block header %}
+  <header>
+    <a class="logo" href="{{ url_for('home') }}">
+      <img src="{{ url_for('static', filename='images/Logo Lion.svg') }}" alt="logo-site" class="logo-lion" />
+    </a>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('contato') }}">Contato</a></li>
+        <li class="agendar"><a href="{{ url_for('agendamento') }}">AGENDAR</a></li>
+      </ul>
+    </nav>
+  </header>
+{% endblock %}
+
+{% block content %}
+  <main>
+    <section class="title">
+      <h1>Avaliações</h1>
+    </section>
+
+    <div class="linha-horizontal"></div>
+
+    <section class="avaliacoes">
+      <div class="avaliacao">
+        <div class="avatar-wrapper">
+          <img src="{{ url_for('static', filename='images/perfil-avaliacao.svg') }}" alt="avatar" class="avatar">
+        </div>
+
+        <div class="estrelas">
+          <img src="{{ url_for('static', filename='images/avaliacao-stars.svg') }}" alt="avaliation-stars" class="stars">
+        </div>
+
+        <h3>Jefferson</h3>
+        <p>Excelente atendimento!</p>
+      </div>
+
+      <div class="avaliacao">
+        <div class="avatar-wrapper">
+          <img src="{{ url_for('static', filename='images/perfil-avaliacao.svg') }}" alt="avatar" class="avatar">
+        </div>
+
+        <div class="estrelas">
+          <img src="{{ url_for('static', filename='images/avaliacao-stars.svg') }}" alt="avaliation-stars" class="stars">
+        </div>
+
+        <h3>Samuel</h3>
+        <p>Ótimos profissionais!</p>
+      </div>
+    </section>
+  </main>
+{% endblock %}

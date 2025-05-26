@@ -1,73 +1,40 @@
 {% extends "base.html" %}
 
-{% block title %} AutoCar - Início {% endblock %}
-
-{% block head %} 
-
-{{ super() }}
-<link rel="stylesheet" href="/static/css/tela_inicial.css">
-
+{% block head %}
+  {{ super() }}
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <title>Home - Lion</title>
 {% endblock %}
 
 {% block header %}
-
-<div class="header">
-    <a href="{{ url_for('home' ) }}" class="voltar">
-        <img src="/static/images/back-icon.svg" alt="Logo voltar" class="logo-voltar"> 
-        Voltar
+  <header>
+    <a class="logo" href="{{ url_for('home') }}">
+      <img src="{{ url_for('static', filename='images/Logo Lion.svg') }}" alt="logo-site" class="logo-lion">
     </a>
-    <h2 class="titulo-pagina">AutoCar</h2>
-    <a href="{{ url_for('logout') }}" class="sair">Sair</a>
-</div>
 
+    <ul class="services">
+      <li><a href="{{ url_for('servicos') }}">Serviços</a></li>
+      <li><a href="{{ url_for('avaliacoes') }}">Avaliações</a></li>
+      <li><a href="{{ url_for('contato') }}">Contato</a></li>
+      <li class="agendar"><a href="{{ url_for('login') }}">FAZER LOGIN</a></li>
+    </ul>
+  </header>
 {% endblock %}
 
 {% block content %}
+  <main>
+    <section class="content">
+      <h1>Detalhes que valorizam seu carro</h1>
 
-<div class="container">
+      <div class="btn-agenda">
+        <a href="{{ url_for('agendamento') }}">
+          <p>AGENDE SEU HORÁRIO</p>
+        </a>
+      </div>
+    </section>
 
-    <div class="menu-central">
-        <a href="{{ url_for('home') }}" class="botao">
-            <img src="/static/images/home-icon.svg" class="icone" alt="Ícone Início">
-            Início
-        </a>
-        {% if session["admin"] == False and session["funcionario"] == False %}
-            <a href="{{ url_for('agendar_servico') }}" class="botao">
-                <img src="/static/images/calendar-icon.svg" class="icone" alt="Ícone Agendar">
-                Agendar serviço
-            </a>
-        {% endif %}
-        <!-- <a href="{{ url_for('meus_veiculos') }}" class="botao">
-            <img src="/static/images/car-icon.svg" class="icone" alt="Ícone Veículos">
-            Meus veículos
-        </a> -->
-        {% if session["funcionario"] or session["admin"] %}
-            <a href="{{ url_for('cadastrar_servico') }}" class="botao">
-                <img src="/static/images/document-icon.svg" class="icone" alt="Ícone Cadastro">
-                Cadastrar serviço
-            </a>
-            <a href="{{ url_for('relatorio') }}" class="botao">
-                <img src="/static/images/report-icon.svg" class="icone" alt="Ícone Relatório">
-                Relatório do Dia
-            </a>
-            <a href="{{ url_for('dashboard') }}" class="botao">
-                <img src="/static/images/graph-icon.svg" class="icone" alt="Ícone de Gráfico">
-                Dashboard
-            </a>
-        {% endif %}
-        <a href="{{ url_for('servicos_agendados') }}" class="botao">
-            <img src="/static/images/list-icon.svg" class="icone" alt="Ícone Lista de Serviços">
-            {% if session["funcionario"] or session["admin"] %}
-                Serviços agendados
-            {% else %}
-                Meus agendamentos
-            {% endif %}
-        </a>
-        <a href="{{ url_for('perfil') }}" class="botao">
-            <img src="/static/images/user-icon.svg" class="icone" alt="Ícone Perfil">
-            Perfil
-        </a>
-    </div>
-</div>
-
+    <section class="car-img">
+      <img src="{{ url_for('static', filename='images/Carro 1 bmw.svg') }}" alt="carro">
+    </section>
+  </main>
 {% endblock %}

@@ -1,34 +1,35 @@
 {% extends "base.html" %}
 
-{% block head %} 
-
-{{ super() }}
-<link rel="stylesheet" href="/static/css/login.css">
-
+{% block head %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 {% endblock %}
 
-{% block title %} Login {% endblock %}
+{% block header %}
+    <section class="logo">
+        <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='images/Logo Lion.svg') }}" alt="logo-lion"></a>
+    </section>
+{% endblock %}
 
 {% block content %}
+    <div class="linha-vertical"></div>
 
-<div class="login-container">
-    <h1>Login</h1>
-    <form class="login-form" method="post" action="{{ url_for('login') }}">
-        <label for="email">Email</label>
-        <input type="text" id="email" name="email" required />
+    <section class="login-acess">
+        <h1>Acesso</h1>
 
-        <label for="senha">Senha</label>
-        <input type="password" id="senha" name="senha" required />
+        <form action="{{ url_for('login') }}" method="post">
+            <input type="email" name="email" placeholder="E-mail" required>
+            <input type="password" name="senha" placeholder="Senha" required>
 
-        <button type="submit">Entrar</button>
-    </form>
-    <p class="login-info">Acesso restrito ao sistema de agendamento</p>
+            <button type="submit" class="entrar">ENTRAR</button>
+        </form>
 
-    <!-- Botão de cadastro -->
-    <div style="text-align: center; margin-top: 1rem;">
-        <a href="{{ url_for('cadastrar_cliente') }}" class="botao-cadastro">Criar novo cadastro</a>
-    </div>
+        <a class="recover-password" href="{{ url_for('cadastrar_cliente') }}">
+            <p>Esqueci minha senha</p>
+        </a>
 
-</div>
-
+        <div class="cadastrar">
+            <a href="{{ url_for('cadastrar_cliente') }}"><p>CADASTRAR</p></a>
+        </div>
+    </section>
 {% endblock %}
