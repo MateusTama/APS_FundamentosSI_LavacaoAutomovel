@@ -80,19 +80,15 @@ Por padrão, a aplicação estará disponível em:
 
 ```
 .
-├── app/
+├── models/
 │   ├── __init__.py
 │   ├── routes.py
 │   └── ...
 ├── config.env
 ├── requirements.txt
-├── run.py
+├── app.py
 ├── .gitignore
 └── README.md
 ```
 
 ---
-
-## 🛡️ Licença
-
-Este projeto está sob a licença [MIT](LICENSE).
