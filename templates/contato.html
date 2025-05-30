@@ -15,6 +15,9 @@
       <ul>
         <li><a href="{{ url_for('servicos') }}">Serviços</a></li>
         <li class="agendar"><a href="{{ url_for('agendamento') }}">AGENDAR</a></li>
+        {% if session["id"] %}
+          <li><a href="{{url_for('logout')}}">Sair</a></li>
+        {% endif %}
       </ul>
     </nav>
   </header>

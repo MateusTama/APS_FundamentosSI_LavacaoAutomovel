@@ -8,6 +8,9 @@
     <nav>
       <ul>
         <li><a href="/pages/contato.html">Contatos</a></li>
+        {% if session["id"] %}
+          <li><a href="{{url_for('logout')}}">Sair</a></li>
+        {% endif %}
       </ul>
     </nav>
   </header>

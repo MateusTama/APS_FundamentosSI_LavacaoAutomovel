@@ -3,8 +3,9 @@
 {% block head %}
   {{ super() }}
   <link rel="stylesheet" href="{{ url_for('static', filename='css/servicos.css') }}">
-  {% block title %} Serviços - Lion {% endblock %}
 {% endblock %}
+
+{% block title %} Serviços - Lion {% endblock %}
 
 {% block header %}
   <header>
@@ -15,6 +16,9 @@
       <ul>
         <li><a href="{{ url_for('contato') }}">Contato</a></li>
         <li class="agendar"><a href="{{ url_for('agendamento') }}">AGENDAR</a></li>
+        {% if session["id"] %}
+          <li><a href="{{url_for('logout')}}">Sair</a></li>
+        {% endif %}
       </ul>
     </nav>
   </header>
@@ -26,22 +30,49 @@
       <h1>Serviços</h1>
     </div>
 
-    {% if servicos %}
     <section class="services">
       <div class="service">
-        <h2 class="title">{{ servico_nome }}</h2>
-        <h2 class="time">{{ servico_duracao_estimada }}</h2>
-        <p class="price">{{ servico_preco }}</p>
+        <h2 class="title">Lavagem Premium</h2>
+        <div class="images">
+          <img src="{{ url_for('static', filename='images/Star Lavagem premium.svg') }}" alt="Star Lavagem premium" />
+          <img src="{{ url_for('static', filename='images/Star Lavagem premium.svg') }}" alt="Star Lavagem premium" />
+          <img src="{{ url_for('static', filename='images/Lavagem premium-1.svg') }}" alt="carro-lavagem-premium" />
+        </div>
+        <h2 class="time">1h</h2>
+        <p class="price">R$ 80,00</p>
+      </div>
+
+      <div class="service">
+        <h2 class="title">Higienização Interna</h2>
+        <img src="{{ url_for('static', filename='images/Volante hig-premium.svg') }}" alt="volante-premium" />
+        <h2 class="time">2h</h2>
+        <p class="price">R$ 120,00</p>
+      </div>
+
+      <div class="service">
+        <h2 class="title">Polimento Técnico</h2>
+        <img src="{{ url_for('static', filename='images/Polimento img.svg') }}" alt="polimento" />
+        <h2 class="time">3h</h2>
+        <p class="price">R$ 250,00</p>
+      </div>
+
+      <div class="service">
+        <h2 class="title">Encerramento</h2>
+        <div class="images2">
+          <img src="{{ url_for('static', filename='images/Jeep encerramento.svg') }}" alt="Jeep encerramento" />
+          <img src="{{ url_for('static', filename='images/Diamond encerramento.svg') }}" alt="Diamond encerramento" />
+        </div>
+        <h2 class="time">30min</h2>
+        <p class="price">R$ 150,00</p>
       </div>
     </section>
 
-    <section class="btn-agend">
+    <section class="btn-agend margin-top24 margin-bottom24">
       <div class="btn">
-        <a class="btn" href="{{ url_for('agendamento') }}">AGENDAR</a>
+        <ul>
+          <a href="{{ url_for('agendamento') }}" class="agendar-expandido">AGENDE SEU HORÁRIO</a>
+        </ul>
       </div>
     </section>
-    {% else %}
-      <p>Nenhum serviço cadastrado</p>
-    {% endif %}
   </main>
 {% endblock %}

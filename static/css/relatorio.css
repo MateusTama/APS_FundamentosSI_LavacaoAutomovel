@@ -67,6 +67,11 @@ header {
   }
 }
 
+.title {
+  text-align: center;
+  margin-top: 64px;
+}
+
 main {
     display: flex;
     flex-direction: column;
@@ -107,12 +112,75 @@ main {
     }
 }
 
-.margin-top24 {
+input {
+  width: 450px;
+  height: 60px;
+  border-radius: 30px;
+  background-color: #6e6e6e;
+  color: #0a0a0a;
+  font-size: 1.3rem;
+  font-family: "Lilita One", Arial, sans-serif;
+  padding: 0 20px;
+  border: 0.5px solid #ffffff;
   margin-top: 24px;
 }
 
-.margin-bottom24 {
-  margin-bottom: 24px;
+.confirm-btn {
+  width: 300px;
+  height: 60px;
+  border-radius: 20px;
+  background-color: #ff8205;
+  grid-column: 1 / -1; /* da coluna 1 até a última */
+  justify-self: center; /* centraliza o botão horizontalmente */
+  margin-top: 2rem;
+  margin-bottom: 100px;
+  color: #ffffff;
+  font-family: 'Lilita One', Arial, sans-serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+.relatorio-tabela {
+  /* width: 100%; */
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #2a2a2a;
+  color: #fff;
+  font-family: Arial, sans-serif;
+  margin: 24px;
+  border-radius: 10px;
+}
+
+.relatorio-tabela th, .relatorio-tabela td {
+  padding: 12px 10px;
+  text-align: left;
+  border-left: 2px solid #3d3d3d;
+}
+
+.relatorio-tabela th:first-child,
+.relatorio-tabela td:first-child {
+  border-left: none;
+}
+
+.relatorio-tabela th {
+  background-color: #1f1f1f;
+  color: orange;
+  font-weight: bold;
+}
+
+.relatorio-tabela tr:nth-child(even) {
+  background-color: #2f2f2f;
+}
+
+.relatorio-tabela tr:hover {
+  background-color: #3a3a3a;
+}
+
+.form-column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
 .agendar-expandido {
@@ -125,6 +193,7 @@ main {
   border-radius: 20px;
   text-decoration: none;
   color: white;
+  font-family: "Lilita One", Arial, sans-serif;
 }
 
 .agendar-expandido:hover {
@@ -132,3 +201,8 @@ main {
   transform: scale(1.1);
   color: #ff8205;
 }
+
+.margin-bottom24 {
+  margin-bottom: 24px;
+}
+

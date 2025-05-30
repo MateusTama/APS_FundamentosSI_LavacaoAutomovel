@@ -16,7 +16,11 @@
       <li><a href="{{ url_for('servicos') }}">Serviços</a></li>
       <li><a href="{{ url_for('avaliacoes') }}">Avaliações</a></li>
       <li><a href="{{ url_for('contato') }}">Contato</a></li>
-      <li class="agendar"><a href="{{ url_for('login') }}">FAZER LOGIN</a></li>
+      {% if session["id"] %}
+        <li><a href="{{url_for('logout')}}">Sair</a></li>
+      {% else %}
+        <li class="agendar"><a href="{{ url_for('login') }}">FAZER LOGIN</a></li>
+      {% endif %}
     </ul>
   </header>
 {% endblock %}

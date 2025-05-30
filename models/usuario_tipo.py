@@ -62,4 +62,3 @@ class UsuarioTipo:
                 return True
 
         return False
-    

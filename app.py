@@ -60,7 +60,7 @@ def cadastrar_cliente():
         usuario_nome = request.form["nome"]
         usuario_email = request.form["email"]
         usuario_senha = request.form["senha"]
-        usuario_colaborador = request.form["colaborador"]
+        usuario_colaborador = request.form.get("colaborador")
         tipo_id = 1
         if usuario_colaborador:
             tipo_id = 2
@@ -71,20 +71,20 @@ def cadastrar_cliente():
 
     return render_template("cadastro_cliente.html")
 
-@app.route("/perfil")
-def perfil():
-    if (not "id" in session):
-        return redirect(url_for("login"))
+# @app.route("/perfil")
+# def perfil():
+#     if (not "id" in session):
+#         return redirect(url_for("login"))
 
-    usuario = Usuario.buscar(session["id"])
-    return render_template("perfil.html", usuario=usuario)
+#     usuario = Usuario.buscar(session["id"])
+#     return render_template("perfil.html", usuario=usuario)
 
-@app.route("/veiculos")
-def meus_veiculos():
-    if (not "id" in session):
-        return redirect(url_for("home"))
+# @app.route("/veiculos")
+# def meus_veiculos():
+#     if (not "id" in session):
+#         return redirect(url_for("home"))
 
-    return render_template("meus_veiculos.html", veiculos=None)
+#     return render_template("meus_veiculos.html", veiculos=None)
 
 @app.route("/cadastrar_servico", methods=["GET","POST"])
 def cadastrar_servico():
@@ -107,8 +107,8 @@ def cadastrar_servico():
     servico_categorias = ServicoCategoria.buscar_todas_categorias()
     return render_template("cadastro_servico.html", servico_categorias=servico_categorias)
 
-@app.route("/agendar_servico", methods=["GET","POST"])
-def agendar_servico(): 
+@app.route("/agendamento", methods=["GET","POST"])
+def agendamento(): 
     if (not "id" in session):
         return redirect(url_for("login"))
     
@@ -125,7 +125,7 @@ def agendar_servico():
 
     servicos = Servico.buscar_todos_servicos()
     veiculo_tipos = VeiculoTipo.buscar_todos_tipos()
-    return render_template("agendar_servico.html", servicos=servicos, veiculo_tipos=veiculo_tipos)
+    return render_template("agendamento.html", servicos=servicos, veiculo_tipos=veiculo_tipos)
 
 @app.route("/servicos_agendados")
 def servicos_agendados():
@@ -169,11 +169,11 @@ def finalizar_agendamento(agendamento_id):
     
 @app.route("/relatorio")
 def relatorio():
-    if (not "id" in session):
-        return redirect(url_for("login"))
+    # if (not "id" in session):
+    #     return redirect(url_for("login"))
     
-    if (not session["admin"] and not session["funcionario"]):
-        return redirect(url_for("home"))
+    # if (not session["admin"] and not session["funcionario"]):
+    #     return redirect(url_for("home"))
     
     data_hoje = date.today()
     servicos_realizados = AgendamentoServico.buscar_todos_servicos_agendados(data_hoje, 2)
@@ -191,12 +191,12 @@ def dashboard():
     df = AgendamentoServico.total_servicos_por_tipo_veiculo()
 
     fig = go.Figure(data=[
-        go.Bar(x=df["veiculo_tipo_nome"], y=df["quantidade"], marker_color='steelblue')
+        go.Bar(x=df["veiculo_tipo_nome"], y=df["quantidade"], marker_color='orange')
     ])
     fig.update_layout(title="Agendamentos por Tipo de Veículo")
 
     grafico_html = pyo.plot(fig, output_type="div")
-    return render_template("dashboard_veiculos.html", grafico_html=grafico_html)
+    return render_template("dashboard.html", grafico_html=grafico_html)
 
 @app.route("/logout")
 def logout():
@@ -216,9 +216,9 @@ def avaliacoes():
 def servicos():
     return render_template("servicos.html")
 
-@app.route("/agendamento")
-def agendamento():
-    return render_template("agendamento.html")
+# @app.route("/agendamento")
+# def agendamento():
+#     return render_template("agendamento.html")
 
 if (__name__ == "__main__"):
     app.run(debug=True)

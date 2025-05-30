@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block title %} Relatório {% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <title>Relatório</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/relatorio.css') }}">
+{% endblock %}
+
+{% block header %}
+  <header>
+    <a class="logo" href="{{ url_for('home') }}">
+      <img src="{{ url_for('static', filename='images/Logo Lion.svg') }}" alt="logo-site" class="logo-lion" />
+    </a>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('servicos') }}">Contato</a></li>
+        <li class="agendar"><a href="{{ url_for('agendamento') }}">AGENDAR</a></li>
+        {% if session["id"] %}
+          <li><a href="{{url_for('logout')}}">Sair</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+{% endblock %}
+
+{% block content %}
+  <div class="title">
+    <h1>Serviços realizados em {{ data_hoje }}</h1>
+  </div>
+
+  <!-- Outros conteúdos da página -->
+
+  {% if servicos_realizados %}
+    <table class="relatorio-tabela">
+      <thead>
+        <tr>
+            <th>Cliente</th>
+            <th>Veículo</th>
+            <th>Serviço</th>
+            <th>Colaborador</th>
+            <th>Preço (R$)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for servico in servicos_realizados %}
+          <tr>
+              <td>{{ servico.cliente_nome }}</td>
+              <td>{{ servico.veiculo_tipo_nome }}</td>
+              <td>{{ servico.servico_nome }}</td>
+              <td>{{ servico.colaborador_nome or "Não atribuído" }}</td>
+              <td>{{ servico.servico_preco }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>Nenhum serviço realizado hoje.</p>
+  {% endif %}
+
+  <!-- Outros conteúdos da página -->
+
+{% endblock %}
+

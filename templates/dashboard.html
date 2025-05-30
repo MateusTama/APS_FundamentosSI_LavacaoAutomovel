@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %} Relatório {% endblock %}
+
+{% block head %}
+  {{ super() }}
+  <title>Relatório</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/relatorio.css') }}">
+{% endblock %}
+
+{% block header %}
+  <header>
+    <a class="logo" href="{{ url_for('home') }}">
+      <img src="{{ url_for('static', filename='images/Logo Lion.svg') }}" alt="logo-site" class="logo-lion" />
+    </a>
+    <nav>
+      <ul>
+        <li><a href="{{ url_for('servicos') }}">Contato</a></li>
+        <li class="agendar"><a href="{{ url_for('agendamento') }}">AGENDAR</a></li>
+        {% if session["id"] %}
+          <li><a href="{{url_for('logout')}}">Sair</a></li>
+        {% endif %}
+      </ul>
+    </nav>
+  </header>
+{% endblock %}
+
+{% block content %}
+  <div class="title margin-bottom24">
+    <h1>Dashboard</h1>
+  </div>
+
+    <div>
+        {{ grafico_html|safe }}
+    </div>
+
+{% endblock %}
+

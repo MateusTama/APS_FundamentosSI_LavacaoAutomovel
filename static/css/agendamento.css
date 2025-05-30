@@ -84,6 +84,7 @@ main {
       flex-direction: column;
       gap: 55px;
       font-size: 30px;
+      margin-top: 300px;
 
       .dados-cliente {
         input {
@@ -107,22 +108,6 @@ main {
       h2 {
         margin-bottom: 10px;
         margin-top: 30px;
-      }
-
-      select {
-        width: 270px;
-        height: 40px;
-        border-radius: 30px;
-        background-color: #6e6e6e;
-        color: #ffffff;
-        font-size: 1rem;
-        padding: 0 20px;
-        border: 0.5px solid #ffffff;
-
-        option {
-          color: #ffffff;
-          font-family: "Lilita One", Arial, sans-serif;
-        }
       }
     }
 
@@ -188,6 +173,22 @@ main {
   }
 }
 
+select {
+  width: 270px;
+  height: 40px;
+  border-radius: 30px;
+  background-color: #6e6e6e;
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 0 20px;
+  border: 0.5px solid #ffffff;
+}
+
+option {
+    color: #ffffff;
+    font-family: "Lilita One", Arial, sans-serif;
+}
+
 .confirm-btn {
   width: 300px;
   height: 60px;
@@ -200,5 +201,27 @@ main {
   color: #ffffff;
   font-family: 'Lilita One', Arial, sans-serif;
   font-size: 1.2rem;
+  cursor: pointer;
+}
+
+input[type="date"],
+input[type="time"] {
+  width: 270px;
+  height: 40px;
+  border-radius: 30px;
+  background-color: #6e6e6e;
+  color: #ffffff;
+  font-size: 1rem;
+  padding: 0 20px;
+  border: 0.5px solid #ffffff;
+  font-family: "Lilita One", Arial, sans-serif;
+  appearance: none; /* remove aparência padrão */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1); /* deixa o ícone branco */
   cursor: pointer;
 }
